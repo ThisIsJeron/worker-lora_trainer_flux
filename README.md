@@ -1,10 +1,10 @@
 <div align="center">
 
-<h1>LoRA Trainer | Worker</h1>
+<h1>Flux LoRA Trainer | Worker</h1>
 
 </div>
 
-This is a implementation https://github.com/kohya-ss/sd-scripts
+This is fork of the implementation https://github.com/kohya-ss/sd-scripts
 Derived from e1pupper's RunPod worker implementation https://github.com/e1pupper/loratrainer
 
 1) Clone this repo
@@ -12,7 +12,7 @@ Derived from e1pupper's RunPod worker implementation https://github.com/e1pupper
 3)
 
 
-## Inputs
+## Inputs (updated from forked repo for Flux)
 
 | Name                        | Type  | Description                                             | Default     | Required |
 |-----------------------------|-------|---------------------------------------------------------|-------------|:--------:|
@@ -22,16 +22,16 @@ Derived from e1pupper's RunPod worker implementation https://github.com/e1pupper
 | unet_lr                     | float | Learning rate of the U-Net model                        | 0.0001      |          |
 | network_dim                 | int   | Dimension of the neural network                         | 256         |          |
 | lr_scheduler_num_cycles     | int   | Number of cycles of the learning rate scheduler         | 1           |          |
-| learning_rate               | float | Global learning rate                                    | 0.0001      |          |
+| learning_rate               | float | Global learning rate                                    | 0.0004      |          |
 | lr_scheduler                | str   | Type of the learning rate scheduler                     | 'cosine'    |          |
 | lr_warmup_steps             | int   | Number of steps for the learning rate warmup            | 280         |          |
 | train_batch_size            | int   | Batch size for training                                 | 1           |          |
 | max_train_steps             | int   | Maximum number of training steps                        | 1250        |          |
-| mixed_precision             | str   | Precision type used for mixed precision training        | 'fp16'      |          |
-| save_precision              | str   | Precision type used when saving the model               | 'fp16'      |          |
-| optimizer_type              | str   | Type of the optimizer used in training                  | 'AdamW8bit' |          |
+| mixed_precision             | str   | Precision type used for mixed precision training        | 'bf16'      |          |
+| save_precision              | str   | Precision type used when saving the model               | 'float16'   |          |
+| optimizer_type              | str   | Type of the optimizer used in training                  | 'adamw8bit' |          |
 | max_data_loader_num_workers | int   | Maximum number of workers for the data loader           | 0           |          |
-| steps                       | int   | Number of steps to be taken during the training process | 125         |          |
+| steps                       | int   | Number of steps to be taken during the training process | 1000        |          |
 
 
 ### Example
