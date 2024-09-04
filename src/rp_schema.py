@@ -29,7 +29,7 @@ INPUT_SCHEMA = {
     'learning_rate': {
         'type': float,
         'required': False,
-        'default': 0.0001
+        'default': 0.0004  # Updated default to 0.0004
     },
     'lr_scheduler': {
         'type': str,
@@ -44,7 +44,7 @@ INPUT_SCHEMA = {
     'train_batch_size': {
         'type': int,
         'required': False,
-        'default': 1
+        'default': 1  # Confirmed train batch size as 1
     },
     'max_train_steps': {
         'type': int,
@@ -54,17 +54,17 @@ INPUT_SCHEMA = {
     'mixed_precision': {
         'type': str,
         'required': False,
-        'default': 'fp16'
+        'default': 'bf16'  # Updated default to 'bf16'
     },
     'save_precision': {
         'type': str,
         'required': False,
-        'default': 'fp16'
+        'default': 'float16'  # Updated default to 'float16'
     },
     'optimizer_type': {
         'type': str,
         'required': False,
-        'default': 'AdamW8bit'
+        'default': 'adamw8bit'  # Updated default to 'adamw8bit'
     },
     'max_data_loader_num_workers': {
         'type': int,
@@ -74,6 +74,6 @@ INPUT_SCHEMA = {
     'steps': {
         'type': int,
         'required': False,
-        'default': 125
+        'default': 1000  # Updated default to 1000
     }
 }

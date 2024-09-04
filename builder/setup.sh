@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Export the Hugging Face API key
+export HUGGINGFACE_API_KEY="your_huggingface_api_key_here"
+
 apt-get install ffmpeg libsm6 libxext6  -y
 
 apt-get update && \
@@ -17,7 +20,9 @@ rm -rf /var/lib/apt/lists/*
 # Clone kohya-ss/sd-scripts
 git clone https://github.com/kohya-ss/sd-scripts.git && \
     cd sd-scripts && \
-    git checkout 0cfcb5a49cf813547d728101cc05edf1a9b7d06c
+    git checkout master
 
-# Cache models
-wget https://huggingface.co/runwayml/stable-diffusion-v1-5/resolve/main/v1-5-pruned.safetensors -P /model_cache
+# Use wget with the Hugging Face token to cache the gated model
+wget --header="Authorization: Bearer $HUGGINGFACE_API_KEY" \
+     https://huggingface.co/black-forest-labs/FLUX.1-dev/resolve/main/flux1-dev.safetensors \
+     -P /model_cache
