@@ -15,8 +15,8 @@ WORKDIR /
 COPY builder/setup.sh /setup.sh
 
 # Use the Hugging Face API key as a build secret
-RUN --mount=type=secret,id=huggingface_key,required ls -la /run/secrets/ \
-    TOKEN=$(cat /run/secrets/huggingface_key) && bash /setup.sh
+RUN --mount=type=secret,id=huggingface_key,required \
+    bash -c 'ls -la /run/secrets/ && TOKEN=$(cat /run/secrets/huggingface_key) && export HUGGINGFACE_API_KEY=$TOKEN && bash /setup.sh'
 
 # Install Python dependencies (Worker Template)
 COPY builder/requirements.txt /requirements.txt
