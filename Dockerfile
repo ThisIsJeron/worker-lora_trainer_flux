@@ -1,3 +1,5 @@
+# syntax=docker/dockerfile:1.4
+
 # Base image
 FROM nvidia/cuda:11.8.0-cudnn8-runtime-ubuntu20.04
 
@@ -11,11 +13,11 @@ WORKDIR /
 
 # Install system packages, clone repo, and cache models
 COPY builder/setup.sh /setup.sh
-RUN bash /setup.sh
 
-# Set environment variable for Hugging Face API key
-ARG HUGGINGFACE_API_KEY
-ENV HUGGINGFACE_API_KEY=${HUGGINGFACE_API_KEY}
+# Use the Hugging Face API key as a build secret
+RUN --mount=type=secret,id=huggingface_key \
+    export HUGGINGFACE_API_KEY=$(cat /run/secrets/huggingface_key) && \
+    bash /setup.sh
 
 # Install Python dependencies (Worker Template)
 COPY builder/requirements.txt /requirements.txt

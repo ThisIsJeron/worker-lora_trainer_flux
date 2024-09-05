@@ -33,5 +33,5 @@ jobs:
           push: true
           context: .
           tags: ${{ secrets.DOCKERHUB_REPO }}/${{ secrets.DOCKERHUB_IMG }}:${{ github.event.release.tag_name }}
-          build-args: |
+          secrets: |
             HUGGINGFACE_API_KEY=${{ secrets.HUGGINGFACE_API_KEY }}

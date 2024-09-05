@@ -1,7 +1,10 @@
 #!/bin/bash
 
-# Export the Hugging Face API key
-export HUGGINGFACE_API_KEY="your_huggingface_api_key_here"
+# Check if the HUGGINGFACE_API_KEY environment variable is set
+if [ -z "$HUGGINGFACE_API_KEY" ]; then
+    echo "Error: HUGGINGFACE_API_KEY is not set."
+    exit 1
+fi
 
 apt-get install ffmpeg libsm6 libxext6  -y
 
@@ -20,7 +23,7 @@ rm -rf /var/lib/apt/lists/*
 # Clone kohya-ss/sd-scripts
 git clone https://github.com/kohya-ss/sd-scripts.git && \
     cd sd-scripts && \
-    git checkout master
+    git checkout main  # Replace 'master' with 'main' if the branch name has changed
 
 # Use wget with the Hugging Face token to cache the gated model
 wget --header="Authorization: Bearer $HUGGINGFACE_API_KEY" \
