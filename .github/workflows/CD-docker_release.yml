@@ -35,8 +35,9 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v4
         with:
-          push: true
           context: .
+          file: ./Dockerfile  # Explicitly specify the Dockerfile
+          push: true
           tags: ${{ secrets.DOCKERHUB_REPO }}/${{ secrets.DOCKERHUB_IMG }}:${{ github.event.release.tag_name }}
           secrets: |
             HUGGINGFACE_API_KEY=${{ secrets.HUGGINGFACE_API_KEY }}
