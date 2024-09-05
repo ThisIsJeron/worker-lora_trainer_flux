@@ -35,7 +35,6 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-
       - name: Debug Secrets
         run: echo ${{ secrets.HUGGINGFACE_API_KEY }}
 
