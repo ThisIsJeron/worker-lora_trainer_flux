@@ -39,8 +39,7 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: .
-          file: ./Dockerfile  # Explicitly specify the Dockerfile
           push: true
           tags: ${{ vars.DOCKERHUB_REPO }}/${{ vars.DOCKERHUB_IMG }}:dev
           secrets: |
-            HUGGINGFACE_API_KEY=${{ secrets.HUGGINGFACE_API_KEY }}
+            id=huggingface_key,src=${{ secrets.HUGGINGFACE_API_KEY }}
