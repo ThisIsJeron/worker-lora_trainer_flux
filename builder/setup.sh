@@ -23,7 +23,7 @@ rm -rf /var/lib/apt/lists/*
 # Clone kohya-ss/sd-scripts
 git clone https://github.com/kohya-ss/sd-scripts.git && \
     cd sd-scripts && \
-    git checkout main  # Replace 'master' with 'main' if the branch name has changed
+    git checkout main
 
 # Use wget with the Hugging Face token to cache the gated model
 wget --header="Authorization: Bearer $HUGGINGFACE_API_KEY" \
