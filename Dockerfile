@@ -13,6 +13,10 @@ WORKDIR /
 COPY builder/setup.sh /setup.sh
 RUN bash /setup.sh
 
+# Set environment variable for Hugging Face API key
+ARG HUGGINGFACE_API_KEY
+ENV HUGGINGFACE_API_KEY=${HUGGINGFACE_API_KEY}
+
 # Install Python dependencies (Worker Template)
 COPY builder/requirements.txt /requirements.txt
 RUN --mount=type=cache,target=/root/.cache/pip \

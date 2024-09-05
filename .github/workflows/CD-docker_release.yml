@@ -31,4 +31,7 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           push: true
+          context: .
           tags: ${{ secrets.DOCKERHUB_REPO }}/${{ secrets.DOCKERHUB_IMG }}:${{ github.event.release.tag_name }}
+          build-args: |
+            HUGGINGFACE_API_KEY=${{ secrets.HUGGINGFACE_API_KEY }}
