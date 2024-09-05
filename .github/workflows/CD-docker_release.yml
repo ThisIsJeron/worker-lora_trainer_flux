@@ -8,6 +8,11 @@ jobs:
   docker:
     runs-on: ubuntu-latest
     steps:
+      - name: Enable Docker BuildKit
+        run: |
+          echo '{"features":{"buildkit": true}}' | sudo tee /etc/docker/daemon.json
+          sudo systemctl restart docker
+
       - name: Clear Space
         run: |
           rm -rf /usr/share/dotnet

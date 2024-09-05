@@ -9,6 +9,11 @@ jobs:
   docker:
     runs-on: ubuntu-latest
     steps:
+      - name: Enable Docker BuildKit
+        run: |
+          echo '{"features":{"buildkit": true}}' | sudo tee /etc/docker/daemon.json
+          sudo systemctl restart docker
+
       - name: Clear Space
         run: |
           rm -rf /usr/share/dotnet
@@ -31,7 +36,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v4
         with:
-          context:
+          context: .
           push: true
           tags: ${{ vars.DOCKERHUB_REPO }}/${{ vars.DOCKERHUB_IMG }}:dev
           secrets: |
